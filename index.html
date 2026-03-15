@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
@@ -26,12 +27,9 @@
   --w:242px;
   --ac:#6d5ef5;--acg:rgba(109,94,245,0.2);--acs:rgba(109,94,245,0.1);
   --ac2:#f5607a;--gold:#f5c518;--red:#f56060;--green:#4ade80;--amber:#fb923c;
-  --r:16px;--rs:8px;--ease:.17s cubic-bezier(.4,0,.2,1);
+  --r:14px;--rs:8px;--ease:.17s cubic-bezier(.4,0,.2,1);
   --fh:'Syne',sans-serif;--fb:'Instrument Sans',sans-serif;
 }
-
-/* status colours */
---s-todo:#9898b0; --s-prog:#fb923c; --s-done:#4ade80;
 
 body,aside,.main,.modal,.hem,.tb,.mark,.sb-top,.bwrap{transition:background var(--ease),border-color var(--ease),color var(--ease)}
 body{font-family:var(--fb);background:var(--bg);color:var(--tx);display:flex;height:100vh;overflow:hidden}
@@ -64,18 +62,15 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);display:flex;hei
 .ncr input:focus{border-color:var(--ac)}
 .ncr button{background:var(--acs);border:none;border-radius:5px;color:var(--ac);padding:5px 7px;cursor:pointer;font-size:0.7rem;font-weight:600}
 
-/* collection item with summary row */
 .coll-item{border-radius:var(--rs);margin:1px 5px;overflow:hidden;cursor:pointer}
 .coll-item-top{display:flex;align-items:center;gap:7px;padding:6px 12px;font-size:0.78rem;font-weight:500;color:var(--t2);transition:all var(--ease)}
 .coll-item:hover .coll-item-top{background:var(--hover-bg);color:var(--tx)}
 .coll-item.on .coll-item-top{background:var(--acs);color:var(--ac)}
-.coll-item.on .coll-item-top::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:3px;height:13px;background:var(--ac);border-radius:0 3px 3px 0}
 .coll-summary{padding:3px 12px 7px 26px;display:flex;gap:8px;flex-wrap:wrap}
 .cs-pill{font-size:0.62rem;color:var(--t3);display:flex;align-items:center;gap:3px}
 .cs-pill span{font-weight:600}
 .cs-note-preview{padding:0 12px 7px 26px;font-size:0.67rem;color:var(--t3);font-style:italic;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
-/* theme toggle */
 .theme-toggle{display:flex;align-items:center;gap:8px;padding:6px 11px;border-radius:var(--rs);cursor:pointer;font-size:0.75rem;color:var(--t3);transition:all var(--ease);user-select:none}
 .theme-toggle:hover{background:var(--hover-bg);color:var(--t2)}
 .toggle-track{width:30px;height:17px;background:var(--b);border-radius:20px;position:relative;transition:background var(--ease);border:1px solid var(--bh);margin-left:auto}
@@ -105,52 +100,62 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);display:flex;hei
 
 /* ══ BOARD ══ */
 .bwrap{flex:1;overflow-y:auto;padding:18px 20px 60px;background:var(--bg)}
-.board{columns:170px auto;column-gap:12px}
-.board.lv{columns:unset;display:flex;flex-direction:column;gap:8px}
+.board{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;align-items:start}
+.board.lv{display:flex;flex-direction:column;gap:8px}
 
-/* ══ MARK CARD ══ */
-.mark{break-inside:avoid;margin-bottom:12px;background:var(--card);border:1px solid var(--b);border-radius:var(--r);overflow:hidden;cursor:pointer;position:relative;transition:transform var(--ease),box-shadow var(--ease),border-color var(--ease),background var(--ease);animation:ci .24s ease both}
-.mark:hover{transform:translateY(-4px) scale(1.01);border-color:var(--bh);box-shadow:0 16px 40px var(--shadow);background:var(--card2)}
+/* ══ NEWS-STYLE MARK CARD ══ */
+.mark{background:var(--card);border:1px solid var(--b);border-radius:var(--r);overflow:hidden;cursor:pointer;position:relative;transition:transform var(--ease),box-shadow var(--ease),border-color var(--ease),background var(--ease);animation:ci .24s ease both;display:flex;flex-direction:column}
+.mark:hover{transform:translateY(-3px);border-color:var(--bh);box-shadow:0 12px 36px var(--shadow);background:var(--card2)}
 @keyframes ci{from{opacity:0;transform:translateY(10px) scale(0.96)}to{opacity:1;transform:none}}
 .mark:nth-child(1){animation-delay:.02s}.mark:nth-child(2){animation-delay:.04s}.mark:nth-child(3){animation-delay:.06s}.mark:nth-child(4){animation-delay:.08s}.mark:nth-child(5){animation-delay:.1s}.mark:nth-child(6){animation-delay:.12s}
 
-/* hero strip */
-.hero{width:100%;height:56px;position:relative;overflow:hidden;flex-shrink:0}
-.hero.g0{background:linear-gradient(135deg,#1a0533,#6d5ef5,#f5607a)}
-.hero.g1{background:linear-gradient(135deg,#033a1a,#1a8a5a,#6af5c0)}
-.hero.g2{background:linear-gradient(135deg,#330a00,#c0390c,#f5a020)}
-.hero.g3{background:linear-gradient(135deg,#001833,#0c3899,#40c8f5)}
-.hero.g4{background:linear-gradient(135deg,#1a0033,#8b0cf5,#f540d4)}
-.hero.g5{background:linear-gradient(135deg,#1a1400,#b08000,#f5e020)}
-.hero.g6{background:linear-gradient(135deg,#001a1a,#0c7a7a,#40f5e0)}
-.hero.g7{background:linear-gradient(135deg,#1a0a00,#8a3000,#f57040)}
-.hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,0.12) 1px,transparent 0);background-size:20px 20px;pointer-events:none}
-.hero img.hi{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.hero-scrim{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.05),rgba(0,0,0,0.45))}
-.dp{position:absolute;bottom:6px;left:6px;background:rgba(0,0,0,0.6);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:2px 7px 2px 4px;display:flex;align-items:center;gap:4px;font-size:0.59rem;color:rgba(255,255,255,0.85);max-width:calc(100% - 50px)}
-.dp img{width:10px;height:10px;border-radius:2px;object-fit:contain;flex-shrink:0}
-.dp span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.hero-edit{position:absolute;top:4px;right:5px;width:20px;height:20px;background:rgba(0,0,0,0.6);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.15);border-radius:5px;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transition:opacity var(--ease);color:rgba(255,255,255,0.9)}
+/* ── NEWS HERO (tall image) ── */
+.hero{width:100%;height:180px;position:relative;overflow:hidden;flex-shrink:0}
+.hero.g0{background:linear-gradient(160deg,#1a0533 0%,#6d5ef5 60%,#f5607a 100%)}
+.hero.g1{background:linear-gradient(160deg,#033a1a 0%,#1a8a5a 60%,#6af5c0 100%)}
+.hero.g2{background:linear-gradient(160deg,#330a00 0%,#c0390c 60%,#f5a020 100%)}
+.hero.g3{background:linear-gradient(160deg,#001833 0%,#0c3899 60%,#40c8f5 100%)}
+.hero.g4{background:linear-gradient(160deg,#1a0033 0%,#8b0cf5 60%,#f540d4 100%)}
+.hero.g5{background:linear-gradient(160deg,#1a1400 0%,#b08000 60%,#f5e020 100%)}
+.hero.g6{background:linear-gradient(160deg,#001a1a 0%,#0c7a7a 60%,#40f5e0 100%)}
+.hero.g7{background:linear-gradient(160deg,#1a0a00 0%,#8a3000 60%,#f57040 100%)}
+.hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,0.08) 1px,transparent 0);background-size:22px 22px;pointer-events:none;z-index:1}
+.hero img.hi{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+/* Bottom scrim for text readability */
+.hero-scrim{position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(to top,rgba(0,0,0,0.75),transparent);z-index:2}
+
+/* Source pill (bottom left of hero) */
+.hero-source{position:absolute;bottom:9px;left:9px;z-index:3;display:flex;align-items:center;gap:5px;background:rgba(0,0,0,0.55);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:3px 9px 3px 4px;max-width:calc(100% - 80px)}
+.hero-source img{width:12px;height:12px;border-radius:3px;object-fit:contain;flex-shrink:0}
+.hero-source span{font-size:0.62rem;color:rgba(255,255,255,0.88);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500}
+.hero-source .dot{width:2px;height:2px;background:rgba(255,255,255,0.4);border-radius:50%;flex-shrink:0}
+.hero-source .time{font-size:0.6rem;color:rgba(255,255,255,0.55);white-space:nowrap;flex-shrink:0}
+
+/* Status badge (bottom right of hero) */
+.status-badge{position:absolute;bottom:9px;right:9px;z-index:3;border-radius:10px;padding:2px 8px;font-size:0.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.15);cursor:pointer;transition:all var(--ease)}
+.status-badge:hover{filter:brightness(1.15)}
+.status-badge.todo{background:rgba(0,0,0,0.55);color:#b0b0c8}
+.status-badge.progress{background:rgba(251,146,60,0.35);color:#fb923c;border-color:rgba(251,146,60,0.45)}
+.status-badge.done{background:rgba(74,222,128,0.28);color:#4ade80;border-color:rgba(74,222,128,0.38)}
+
+/* Edit cover btn */
+.hero-edit{position:absolute;top:8px;right:8px;z-index:3;width:22px;height:22px;background:rgba(0,0,0,0.6);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.15);border-radius:6px;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transition:opacity var(--ease);color:rgba(255,255,255,0.9)}
 .mark:hover .hero-edit{opacity:1}
 .hero-edit:hover{background:rgba(0,0,0,0.88)}
 
-/* ── STATUS BADGE on hero ── */
-.status-badge{position:absolute;bottom:6px;right:6px;border-radius:10px;padding:2px 7px;font-size:0.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.15);cursor:pointer;transition:all var(--ease)}
-.status-badge:hover{filter:brightness(1.15)}
-.status-badge.todo{background:rgba(0,0,0,0.55);color:#b0b0c8}
-.status-badge.progress{background:rgba(251,146,60,0.3);color:#fb923c;border-color:rgba(251,146,60,0.4)}
-.status-badge.done{background:rgba(74,222,128,0.25);color:#4ade80;border-color:rgba(74,222,128,0.35)}
+/* Category badge (top left of hero) */
+.cat-badge{position:absolute;top:8px;left:8px;z-index:3;border-radius:5px;padding:2px 7px;font-size:0.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;opacity:0;transition:opacity var(--ease)}
+.mark:hover .cat-badge{opacity:1}
 
-/* duplicate warning badge */
-.dup-badge{position:absolute;top:4px;left:5px;background:rgba(245,96,96,0.85);backdrop-filter:blur(8px);border:1px solid rgba(255,100,100,0.4);border-radius:5px;padding:2px 6px;font-size:0.58rem;font-weight:700;color:white;opacity:0;transition:opacity var(--ease)}
+/* Duplicate badge */
+.dup-badge{position:absolute;top:8px;left:8px;z-index:4;background:rgba(245,96,96,0.85);backdrop-filter:blur(8px);border:1px solid rgba(255,100,100,0.4);border-radius:5px;padding:2px 6px;font-size:0.58rem;font-weight:700;color:white;opacity:0;transition:opacity var(--ease)}
 .mark:hover .dup-badge{opacity:1}
 
-/* card body */
-.cb{padding:9px 11px 10px}
-.cc{display:inline-flex;align-items:center;gap:3px;font-size:0.58rem;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--t3);margin-bottom:3px}
-.ct-title{font-family:var(--fh);font-size:0.79rem;font-weight:600;line-height:1.34;color:var(--tx);margin-bottom:3px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.cn{font-size:0.69rem;color:var(--t2);line-height:1.42;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:7px}
-.cf{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+/* ── CARD BODY ── */
+.cb{padding:11px 13px 12px;display:flex;flex-direction:column;gap:5px;flex:1}
+.ct-title{font-family:var(--fh);font-size:0.85rem;font-weight:700;line-height:1.35;color:var(--tx);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.cn{font-size:0.71rem;color:var(--t2);line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.cf{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-top:2px}
 .stars{display:flex;gap:1px;font-size:0.66rem}
 .star{color:var(--t3);cursor:pointer;transition:color .1s}
 .star.lit{color:var(--gold)}
@@ -158,21 +163,23 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);display:flex;hei
 .stars .star:hover~.star{color:var(--t3)}
 .tp{background:var(--acs);color:var(--ac);border-radius:14px;padding:1px 6px;font-size:0.58rem;font-weight:500}
 .unr{width:5px;height:5px;border-radius:50%;background:var(--ac2);margin-left:auto;flex-shrink:0}
-.cacts{position:absolute;bottom:9px;right:8px;display:flex;gap:3px;opacity:0;transition:opacity var(--ease)}
+.cacts{position:absolute;bottom:10px;right:10px;display:flex;gap:3px;opacity:0;transition:opacity var(--ease)}
 .mark:hover .cacts{opacity:1}
 .cab{width:24px;height:24px;background:var(--card);border:1px solid var(--b);border-radius:6px;color:var(--t2);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--ease)}
 .cab:hover{background:var(--card2);border-color:var(--bh);color:var(--tx)}
 .cab.del:hover{background:rgba(245,96,96,0.12);border-color:var(--red);color:var(--red)}
 
-/* list view */
-.board.lv .mark{display:flex;height:64px;margin-bottom:0;animation:none;opacity:1;transform:none}
-.board.lv .hero{width:96px;min-width:96px;height:100%}
-.board.lv .cb{flex:1;min-width:0;display:flex;align-items:center;gap:10px;padding:9px 36px 9px 12px}
-.board.lv .ct-title{flex:1;min-width:0;margin-bottom:0;-webkit-line-clamp:1}
-.board.lv .cn,.board.lv .cc{display:none}
-.board.lv .cf{flex-shrink:0;margin:0}
+/* ── LIST VIEW ── */
+.board.lv .mark{flex-direction:row;height:88px}
+.board.lv .hero{width:130px;min-width:130px;height:100%}
+.board.lv .hero-source .time,.board.lv .hero-source .dot{display:none}
+.board.lv .cb{flex:1;min-width:0;padding:10px 40px 10px 13px;justify-content:center}
+.board.lv .ct-title{-webkit-line-clamp:2;font-size:0.8rem}
+.board.lv .cn{display:none}
+.board.lv .cf{margin-top:3px}
 .board.lv .cacts{bottom:50%;right:8px;transform:translateY(50%)}
-.board.lv .status-badge{bottom:4px;right:4px;font-size:0.54rem;padding:1px 5px}
+.board.lv .status-badge{bottom:6px;right:6px;font-size:0.52rem;padding:1px 5px}
+.board.lv .hero-source{bottom:6px;left:6px}
 
 /* empty */
 .empty{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:280px;gap:9px;color:var(--t3);text-align:center}
@@ -189,14 +196,25 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);display:flex;hei
 .mh h2{font-family:var(--fh);font-size:1.05rem;font-weight:700;color:var(--tx)}
 .mcl{width:26px;height:26px;background:var(--hover-bg);border:1px solid var(--b);border-radius:6px;color:var(--t2);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--ease);font-size:0.85rem}
 .mcl:hover{color:var(--tx)}
-.up{background:var(--bg);border:1px solid var(--b);border-radius:9px;padding:8px 11px;display:none;align-items:center;gap:8px;margin-bottom:12px}
-.up.on{display:flex}
-.up img{width:20px;height:20px;border-radius:4px;object-fit:contain}
-.up-i{flex:1;min-width:0}
-.up-d{font-size:0.64rem;color:var(--t3)}
-.up-t{font-size:0.75rem;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--tx)}
 
-/* duplicate warning in modal */
+/* URL mode tabs */
+.url-mode-tabs{display:flex;gap:6px;margin-bottom:14px}
+.url-tab{flex:1;padding:8px;border-radius:8px;border:1px solid var(--b);text-align:center;cursor:pointer;font-size:0.73rem;font-weight:600;color:var(--t2);transition:all var(--ease);font-family:var(--fh)}
+.url-tab:hover{border-color:var(--bh);color:var(--tx)}
+.url-tab.on{border-color:var(--ac);color:var(--ac);background:var(--acs)}
+
+/* Fetch status bar */
+.fetch-bar{background:var(--bg);border:1px solid var(--b);border-radius:9px;padding:10px 12px;margin-bottom:12px;display:none;align-items:center;gap:10px}
+.fetch-bar.on{display:flex}
+.fetch-thumb{width:44px;height:44px;border-radius:7px;object-fit:cover;flex-shrink:0;background:var(--card2);border:1px solid var(--b)}
+.fetch-info{flex:1;min-width:0}
+.fetch-title{font-size:0.76rem;font-weight:600;color:var(--tx);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fetch-domain{font-size:0.63rem;color:var(--t3);margin-top:2px;display:flex;align-items:center;gap:5px}
+.fetch-domain img{width:11px;height:11px;border-radius:2px}
+.fetch-spinner{width:16px;height:16px;border:2px solid var(--b);border-top-color:var(--ac);border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+.fetch-ok{color:var(--green);font-size:0.9rem;flex-shrink:0}
+
 .dup-warn{background:rgba(245,96,96,0.1);border:1px solid rgba(245,96,96,0.25);border-radius:8px;padding:8px 12px;font-size:0.74rem;color:#f87171;display:none;align-items:center;gap:8px;margin-bottom:12px}
 .dup-warn.on{display:flex}
 .dup-warn a{color:#f87171;font-weight:600;text-decoration:underline;cursor:pointer}
@@ -216,8 +234,8 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);display:flex;hei
 .btn-c:hover{border-color:var(--bh);color:var(--tx)}
 .btn-s{background:var(--ac);color:white;border:none;border-radius:7px;padding:8px 19px;font-family:var(--fh);font-size:0.78rem;font-weight:600;cursor:pointer;transition:all var(--ease);box-shadow:0 0 14px var(--acg)}
 .btn-s:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.btn-s:disabled{opacity:0.5;cursor:not-allowed;transform:none}
 
-/* status picker in modal */
 .status-row{display:flex;gap:7px}
 .sp{flex:1;padding:7px 6px;border-radius:8px;border:2px solid var(--b);cursor:pointer;text-align:center;font-size:0.7rem;font-weight:600;color:var(--t2);transition:all var(--ease);font-family:var(--fh)}
 .sp:hover{border-color:var(--bh)}
@@ -228,16 +246,16 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);display:flex;hei
 /* hero editor */
 .hero-editor{margin-bottom:14px}
 .he-label{font-size:0.62rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--t3);margin-bottom:8px}
-.he-preview{width:100%;height:100px;border-radius:10px;overflow:hidden;position:relative;margin-bottom:10px;border:2px solid var(--b)}
-.he-preview.g0{background:linear-gradient(135deg,#1a0533,#6d5ef5,#f5607a)}
-.he-preview.g1{background:linear-gradient(135deg,#033a1a,#1a8a5a,#6af5c0)}
-.he-preview.g2{background:linear-gradient(135deg,#330a00,#c0390c,#f5a020)}
-.he-preview.g3{background:linear-gradient(135deg,#001833,#0c3899,#40c8f5)}
-.he-preview.g4{background:linear-gradient(135deg,#1a0033,#8b0cf5,#f540d4)}
-.he-preview.g5{background:linear-gradient(135deg,#1a1400,#b08000,#f5e020)}
-.he-preview.g6{background:linear-gradient(135deg,#001a1a,#0c7a7a,#40f5e0)}
-.he-preview.g7{background:linear-gradient(135deg,#1a0a00,#8a3000,#f57040)}
-.he-preview::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,0.12) 1px,transparent 0);background-size:20px 20px}
+.he-preview{width:100%;height:110px;border-radius:10px;overflow:hidden;position:relative;margin-bottom:10px;border:2px solid var(--b)}
+.he-preview.g0{background:linear-gradient(160deg,#1a0533,#6d5ef5,#f5607a)}
+.he-preview.g1{background:linear-gradient(160deg,#033a1a,#1a8a5a,#6af5c0)}
+.he-preview.g2{background:linear-gradient(160deg,#330a00,#c0390c,#f5a020)}
+.he-preview.g3{background:linear-gradient(160deg,#001833,#0c3899,#40c8f5)}
+.he-preview.g4{background:linear-gradient(160deg,#1a0033,#8b0cf5,#f540d4)}
+.he-preview.g5{background:linear-gradient(160deg,#1a1400,#b08000,#f5e020)}
+.he-preview.g6{background:linear-gradient(160deg,#001a1a,#0c7a7a,#40f5e0)}
+.he-preview.g7{background:linear-gradient(160deg,#1a0a00,#8a3000,#f57040)}
+.he-preview::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,0.1) 1px,transparent 0);background-size:20px 20px}
 .he-preview img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .he-preview-label{position:absolute;bottom:6px;left:8px;font-size:0.62rem;color:rgba(255,255,255,0.65);font-family:var(--fh);font-weight:600}
 .grads{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
@@ -301,8 +319,6 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);display:flex;hei
 .guide-shortcut{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--b);font-size:0.76rem;color:var(--t2)}
 .guide-shortcut:last-child{border-bottom:none}
 .guide-shortcut kbd{background:var(--card2);border:1px solid var(--b);border-radius:5px;padding:2px 7px;font-size:0.68rem;color:var(--tx);font-family:monospace}
-
-/* status legend in guide */
 .status-legend{display:flex;flex-direction:column;gap:6px;margin-top:6px}
 .sl-row{display:flex;align-items:center;gap:9px;font-size:0.76rem;color:var(--t2)}
 .sl-badge{border-radius:8px;padding:2px 8px;font-size:0.62rem;font-weight:700;text-transform:uppercase}
@@ -316,7 +332,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);display:flex;hei
 .fab{position:fixed;bottom:22px;right:22px;width:48px;height:48px;background:linear-gradient(135deg,var(--ac),var(--ac2));border-radius:13px;display:none;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 5px 18px rgba(109,94,245,0.5);color:white;font-size:1.3rem;z-index:100;transition:all var(--ease)}
 .fab:hover{transform:scale(1.08) rotate(5deg)}
 
-@media(max-width:680px){.sb{display:none}.fab{display:flex}.tb{padding:10px 13px}.bwrap{padding:13px 11px 72px}.add-btn span{display:none}.add-btn{padding:7px 9px}.guide-panel{max-width:100%}}
+@media(max-width:680px){.sb{display:none}.fab{display:flex}.tb{padding:10px 13px}.bwrap{padding:13px 11px 72px}.add-btn span{display:none}.add-btn{padding:7px 9px}.guide-panel{max-width:100%}.board{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -428,16 +444,31 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);display:flex;hei
 <div class="ov" id="ov" onclick="if(event.target===this)closeModal()">
   <div class="modal">
     <div class="mh"><h2 id="mT">New Mark</h2><div class="mcl" onclick="closeModal()">✕</div></div>
-    <div class="up" id="upPrev">
-      <img id="upFav" src="" alt="">
-      <div class="up-i"><div class="up-t" id="upTitle">—</div><div class="up-d" id="upDom"></div></div>
+
+    <!-- Mode tabs -->
+    <div class="url-mode-tabs">
+      <div class="url-tab on" id="tabAuto" onclick="setUrlMode('auto')">✨ Auto-fetch from URL</div>
+      <div class="url-tab" id="tabManual" onclick="setUrlMode('manual')">✏️ Enter manually</div>
     </div>
+
+    <!-- Fetch preview bar -->
+    <div class="fetch-bar" id="fetchBar">
+      <img class="fetch-thumb" id="fetchThumb" src="" alt="">
+      <div class="fetch-info">
+        <div class="fetch-title" id="fetchTitle">Fetching…</div>
+        <div class="fetch-domain"><img id="fetchFav" src="" alt=""><span id="fetchDomain"></span></div>
+      </div>
+      <div class="fetch-spinner" id="fetchSpinner" style="display:none"></div>
+      <div class="fetch-ok" id="fetchOk" style="display:none">✓</div>
+    </div>
+
     <div class="dup-warn" id="dupWarn">
       ⚠️ You may already have this domain saved — <a onclick="scrollToDup()">view existing mark</a>
     </div>
+
     <div class="field"><label>URL *</label><input type="url" id="fUrl" placeholder="https://…" oninput="onUrl()"></div>
     <div class="fr">
-      <div class="field"><label>Title *</label><input type="text" id="fTitle" placeholder="Name this mark…" oninput="syncUT()"></div>
+      <div class="field"><label>Title *</label><input type="text" id="fTitle" placeholder="Name this mark…"></div>
       <div class="field"><label>Category</label>
         <select id="fCat">
           <option value="">— none —</option>
@@ -469,7 +500,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);display:flex;hei
       </div>
     </div>
     <div class="hero-editor">
-      <div class="he-label">Cover</div>
+      <div class="he-label">Cover Image</div>
       <div class="he-preview g0" id="hePrev"><img id="heImg" src="" style="display:none" alt=""><div class="he-preview-label" id="hePrevLabel">Gradient Cover</div></div>
       <div class="grads" id="gradRow"></div>
       <div class="img-url-row" id="imgUrlRow" style="display:none">
@@ -483,7 +514,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);display:flex;hei
     </div>
     <div class="mf">
       <button class="btn-c" onclick="closeModal()">Cancel</button>
-      <button class="btn-s" onclick="saveMark()">Save Mark</button>
+      <button class="btn-s" id="saveBtn" onclick="saveMark()">Save Mark</button>
     </div>
   </div>
 </div>
@@ -514,12 +545,10 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);display:flex;hei
       <h2 id="cnotesTitle">Collection</h2>
       <div class="mcl" onclick="closeCnotes()">✕</div>
     </div>
-    <!-- Stats row -->
     <div class="coll-stats-row" id="collStatsRow"></div>
-    <!-- Observations field -->
     <div class="field">
       <label>Observations &amp; Notes</label>
-      <textarea id="cnotesText" style="height:120px" placeholder="What patterns are you seeing? What stands out? Use this space to think out loud about this collection…"></textarea>
+      <textarea id="cnotesText" style="height:120px" placeholder="What patterns are you seeing? What stands out?"></textarea>
     </div>
     <div class="mf">
       <button class="btn-c" onclick="closeCnotes()">Cancel</button>
@@ -536,61 +565,37 @@ body{font-family:var(--fb);background:var(--bg);color:var(--tx);display:flex;hei
       <div class="mcl" onclick="closeGuide()">✕</div>
     </div>
     <div class="guide-body">
-
       <div class="guide-section">
         <h3><span>📌</span> What is a Mark?</h3>
-        <p style="font-size:0.77rem;color:var(--t2);line-height:1.6">A <strong style="color:var(--tx)">mark</strong> is anything on the web worth remembering — an article, a tool, a course, an ad you noticed. Folia is your personal research board, not just a list of links.</p>
+        <p style="font-size:0.77rem;color:var(--t2);line-height:1.6">A <strong style="color:var(--tx)">mark</strong> is anything on the web worth remembering — an article, a tool, a course, an ad you noticed. Folia is your personal research board.</p>
       </div>
-
       <div class="guide-section">
         <h3><span>✦</span> Saving a Mark</h3>
         <div class="guide-step"><div class="guide-step-num">1</div><div><div class="guide-step-title">Click "Add Mark"</div><div class="guide-step-desc">Or press <code>⌘N</code> / <code>Ctrl+N</code> from anywhere.</div></div></div>
-        <div class="guide-step"><div class="guide-step-num">2</div><div><div class="guide-step-title">Paste the URL</div><div class="guide-step-desc">Domain and favicon are auto-detected. The title pre-fills — rename it to something meaningful.</div></div></div>
-        <div class="guide-step"><div class="guide-step-num">3</div><div><div class="guide-step-title">Write a note</div><div class="guide-step-desc">Capture <em>why</em> you saved it. This is the most valuable field — future you will thank present you.</div></div></div>
-        <div class="guide-step"><div class="guide-step-num">4</div><div><div class="guide-step-title">Set a status</div><div class="guide-step-desc">Mark it as <strong>To visit</strong>, <strong>In progress</strong>, or <strong>Done</strong> to track your progress across everything you're learning.</div></div></div>
-        <div class="guide-tip">💡 <strong>Tip:</strong> Hover any card and click the pencil on the colour strip to change its cover without opening the full edit form.</div>
+        <div class="guide-step"><div class="guide-step-num">2</div><div><div class="guide-step-title">Choose Auto-fetch or Manual</div><div class="guide-step-desc">Auto-fetch grabs the title and cover image automatically from the URL. Manual lets you fill everything in yourself.</div></div></div>
+        <div class="guide-step"><div class="guide-step-num">3</div><div><div class="guide-step-title">Write a note</div><div class="guide-step-desc">Capture <em>why</em> you saved it. This is the most valuable field.</div></div></div>
+        <div class="guide-step"><div class="guide-step-num">4</div><div><div class="guide-step-title">Set a status</div><div class="guide-step-desc">Mark it as <strong>To visit</strong>, <strong>In progress</strong>, or <strong>Done</strong>.</div></div></div>
+        <div class="guide-tip">💡 <strong>Tip:</strong> Hover any card and click the pencil on the image to change its cover without opening the full edit form.</div>
       </div>
-
       <div class="guide-section">
         <h3><span>🔄</span> Progress Status</h3>
         <div class="status-legend">
           <div class="sl-row"><span class="sl-badge todo">To visit</span> Saved but not opened yet</div>
-          <div class="sl-row"><span class="sl-badge progress">In progress</span> You've started — reading, watching, trying</div>
+          <div class="sl-row"><span class="sl-badge progress">In progress</span> You've started</div>
           <div class="sl-row"><span class="sl-badge done">Done</span> Finished or no longer needed</div>
         </div>
-        <div class="guide-tip" style="margin-top:10px">💡 Click the status badge directly on any card to cycle through the three states without opening the editor.</div>
+        <div class="guide-tip" style="margin-top:10px">💡 Click the status badge on any card to cycle through states without opening the editor.</div>
       </div>
-
-      <div class="guide-section">
-        <h3><span>🗂</span> Collections as Research Boards</h3>
-        <div class="guide-step"><div class="guide-step-num">1</div><div><div class="guide-step-title">Create a collection</div><div class="guide-step-desc">Use "New collection" in the sidebar. Group by project, topic, or intent — <em>AI Tools I'm Tracking</em>, <em>FB Marketing Courses</em>.</div></div></div>
-        <div class="guide-step"><div class="guide-step-num">2</div><div><div class="guide-step-title">Add observations</div><div class="guide-step-desc">Click the <strong>📋 Notes</strong> icon next to any collection name to open the collection notepad. Write your patterns, insights, and summaries here — at the collection level, not just per mark.</div></div></div>
-        <div class="guide-step"><div class="guide-step-num">3</div><div><div class="guide-step-title">Read the summary</div><div class="guide-step-desc">Each collection in the sidebar shows a live count of total marks and how many are To visit / In progress / Done at a glance.</div></div></div>
-      </div>
-
-      <div class="guide-section">
-        <h3><span>⚠️</span> Duplicate Detection</h3>
-        <p style="font-size:0.77rem;color:var(--t2);line-height:1.6">When you paste a URL you've already saved from the same domain, Folia will warn you before you save a duplicate. Hover any card to see if it shares a domain with another.</p>
-      </div>
-
-      <div class="guide-section">
-        <h3><span>🔍</span> Finding Things</h3>
-        <div class="guide-step"><div class="guide-step-num">1</div><div><div class="guide-step-title">Search</div><div class="guide-step-desc">Press <code>⌘K</code> to jump to search. Searches titles, notes, tags, and domains instantly.</div></div></div>
-        <div class="guide-step"><div class="guide-step-num">2</div><div><div class="guide-step-title">Sidebar filters</div><div class="guide-step-desc">Filter by Unread, In Progress, Done, Top Rated, any collection, category, or tag — all live in the sidebar.</div></div></div>
-      </div>
-
       <div class="guide-section">
         <h3><span>⌨️</span> Keyboard Shortcuts</h3>
         <div class="guide-shortcut"><span>Add a new mark</span><kbd>⌘ N</kbd></div>
         <div class="guide-shortcut"><span>Focus search</span><kbd>⌘ K</kbd></div>
         <div class="guide-shortcut"><span>Close any panel</span><kbd>Esc</kbd></div>
       </div>
-
       <div class="guide-section">
         <h3><span>💾</span> Your Data</h3>
-        <p style="font-size:0.77rem;color:var(--t2);line-height:1.6">All marks are saved in your session. Use <strong style="color:var(--tx)">Export marks</strong> at the bottom of the sidebar to download a <code style="background:var(--acs);color:var(--ac);padding:1px 5px;border-radius:4px;font-size:0.7rem">folia-marks.json</code> backup any time.</p>
+        <p style="font-size:0.77rem;color:var(--t2);line-height:1.6">Use <strong style="color:var(--tx)">Export marks</strong> at the bottom of the sidebar to download a backup anytime.</p>
       </div>
-
     </div>
   </div>
 </div>
@@ -607,8 +612,7 @@ async function sSet(k,v){if(window.storage){try{await window.storage.set(k,JSON.
 let marks=[],colls=[],collNotes={},editId=null,navF='all',q='',view='g',mRat=0,mStat='todo';
 let mHeroType='grad',mHeroVal='g0',mHeroImg='';
 let hemId=null,hemType='grad',hemVal='g0',hemImg='';
-let cnotesCollName=null;
-let isDark=true;
+let cnotesCollName=null,isDark=true,urlMode='auto';
 
 const CATS=[{n:'Videos',c:'#f5607a'},{n:'Articles',c:'#40c8f5'},{n:'Tools',c:'#6af5c0'},{n:'Courses',c:'#f5c518'},{n:'Design',c:'#c084fc'},{n:'Code',c:'#6d5ef5'},{n:'Social',c:'#f5a020'},{n:'Other',c:'#9898b0'}];
 const GRADS=['g0','g1','g2','g3','g4','g5','g6','g7'];
@@ -619,6 +623,7 @@ function dom(url){try{return new URL(url).hostname.replace('www.','')}catch{retu
 function fav(url){try{return`https://www.google.com/s2/favicons?domain=${new URL(url).hostname}&sz=32`}catch{return''}}
 function catC(n){return CATS.find(c=>c.n===n)||{c:'#9898b0'}}
 function autoGrad(id){return GRADS[Math.abs(id.split('').reduce((a,c)=>a+c.charCodeAt(0),0))%GRADS.length]}
+function timeAgo(ts){const s=Math.floor((Date.now()-ts)/1000);if(s<60)return'just now';if(s<3600)return Math.floor(s/60)+'m ago';if(s<86400)return Math.floor(s/3600)+'h ago';if(s<604800)return Math.floor(s/86400)+'d ago';return Math.floor(s/604800)+'w ago'}
 
 // ── Theme ──
 function toggleTheme(){isDark=!isDark;applyTheme();sSet('folia-theme',isDark?'dark':'light')}
@@ -642,45 +647,33 @@ async function init(){
   renderSB();render();
 }
 
-// ── Status helpers ──
-function setStat(v){mStat=v;syncStatRow()}
-function syncStatRow(){
-  document.querySelectorAll('.sp').forEach(s=>{
-    s.className='sp';
-    if(s.dataset.s===mStat)s.classList.add('sel-'+mStat);
-  });
+// ── URL Mode ──
+function setUrlMode(mode){
+  urlMode=mode;
+  document.getElementById('tabAuto').classList.toggle('on',mode==='auto');
+  document.getElementById('tabManual').classList.toggle('on',mode==='manual');
+  // Clear fetch bar if switching to manual
+  if(mode==='manual'){
+    document.getElementById('fetchBar').classList.remove('on');
+  }
 }
 
-// cycle status directly on card
+// ── Status ──
+function setStat(v){mStat=v;syncStatRow()}
+function syncStatRow(){document.querySelectorAll('.sp').forEach(s=>{s.className='sp';if(s.dataset.s===mStat)s.classList.add('sel-'+mStat)})}
 async function cycleStatus(id,e){
   e.stopPropagation();
   const m=marks.find(x=>x.id===id);if(!m)return;
   const order=['todo','progress','done'];
-  const cur=m.status||'todo';
-  m.status=order[(order.indexOf(cur)+1)%order.length];
+  m.status=order[(order.indexOf(m.status||'todo')+1)%order.length];
   await save();render();
 }
 
 // ── Duplicate detection ──
-function findDup(url,excludeId){
-  try{
-    const d=new URL(url).hostname.replace('www.','');
-    return marks.find(m=>m.id!==excludeId&&dom(m.url)===d);
-  }catch{return null}
-}
+function findDup(url,excludeId){try{const d=new URL(url).hostname.replace('www.','');return marks.find(m=>m.id!==excludeId&&dom(m.url)===d)}catch{return null}}
 let dupMarkId=null;
-function checkDup(url){
-  const dup=findDup(url,editId);
-  dupMarkId=dup?dup.id:null;
-  document.getElementById('dupWarn').classList.toggle('on',!!dup);
-}
-function scrollToDup(){
-  closeModal();
-  setTimeout(()=>{
-    const el=document.querySelector(`.mark[data-id="${dupMarkId}"]`);
-    if(el){el.scrollIntoView({behavior:'smooth',block:'center'});el.style.outline='2px solid var(--red)';setTimeout(()=>el.style.outline='',1800);}
-  },200);
-}
+function checkDup(url){const dup=findDup(url,editId);dupMarkId=dup?dup.id:null;document.getElementById('dupWarn').classList.toggle('on',!!dup)}
+function scrollToDup(){closeModal();setTimeout(()=>{const el=document.querySelector(`.mark[data-id="${dupMarkId}"]`);if(el){el.scrollIntoView({behavior:'smooth',block:'center'});el.style.outline='2px solid var(--red)';setTimeout(()=>el.style.outline='',1800)}},200)}
 
 // ── Grad swatches ──
 function buildGradRow(rowId,ctx){
@@ -771,11 +764,9 @@ async function addColl(){
 
 // ── Collection Notes ──
 function openCnotes(name,e){
-  e&&e.stopPropagation();
-  cnotesCollName=name;
+  e&&e.stopPropagation();cnotesCollName=name;
   document.getElementById('cnotesTitle').textContent='📁 '+name;
   document.getElementById('cnotesText').value=collNotes[name]||'';
-  // build stats
   const cms=marks.filter(m=>m.coll===name);
   const todo=cms.filter(m=>!m.status||m.status==='todo').length;
   const prog=cms.filter(m=>m.status==='progress').length;
@@ -791,12 +782,7 @@ function openCnotes(name,e){
   setTimeout(()=>document.getElementById('cnotesText').focus(),80);
 }
 function closeCnotes(){document.getElementById('cnotesOv').classList.remove('open');cnotesCollName=null}
-async function saveCnotes(){
-  if(!cnotesCollName)return;
-  collNotes[cnotesCollName]=document.getElementById('cnotesText').value.trim();
-  await sSet('wm3-collnotes',collNotes);
-  closeCnotes();renderSB();toast('Notes saved ✓');
-}
+async function saveCnotes(){if(!cnotesCollName)return;collNotes[cnotesCollName]=document.getElementById('cnotesText').value.trim();await sSet('wm3-collnotes',collNotes);closeCnotes();renderSB();toast('Notes saved ✓')}
 
 // ── Filter & Render ──
 function getList(){
@@ -823,16 +809,23 @@ function heroInner(m){
   const imgTag=m.heroType==='img'&&m.heroImg?`<img class="hi" src="${esc(m.heroImg)}" alt="" onerror="this.style.display='none'">`:'';
   const scrim=m.heroType==='img'&&m.heroImg?`<div class="hero-scrim"></div>`:'';
   const stat=m.status||'todo';
-  const statLabel=STATUSES[stat].label;
-  const statCls=STATUSES[stat].cls;
-  // duplicate flag
   const isDup=marks.filter(x=>x.id!==m.id&&dom(x.url)===dom(m.url)).length>0;
   const dupTag=isDup?`<div class="dup-badge" title="Another mark from this domain exists">2×</div>`:'';
+  const cm=m.cat?catC(m.cat):null;
+  const catTag=m.cat&&!isDup?`<div class="cat-badge" style="background:${cm.c}22;color:${cm.c};border:1px solid ${cm.c}44">${esc(m.cat)}</div>`:'';
+  const ago=timeAgo(m.ts||Date.now());
   return`<div class="hero ${gc}">${imgTag}${scrim}
-    ${dupTag}
-    <div class="dp"><img src="${f}" onerror="this.style.display='none'"><span>${esc(d)}</span></div>
-    <div class="status-badge ${statCls}" onclick="cycleStatus('${m.id}',event)" title="Click to change status">${statLabel}</div>
-    <div class="hero-edit" onclick="openHem('${m.id}',event)" title="Edit cover"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
+    ${dupTag}${catTag}
+    <div class="hero-source">
+      <img src="${f}" onerror="this.style.display='none'">
+      <span>${esc(d)}</span>
+      <div class="dot"></div>
+      <span class="time">${ago}</span>
+    </div>
+    <div class="status-badge ${STATUSES[stat].cls}" onclick="cycleStatus('${m.id}',event)" title="Click to change status">${STATUSES[stat].label}</div>
+    <div class="hero-edit" onclick="openHem('${m.id}',event)" title="Edit cover">
+      <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+    </div>
   </div>`;
 }
 
@@ -843,13 +836,11 @@ function render(){
   if(!l.length){bd.innerHTML='';em.style.display='flex';document.getElementById('emH').textContent=q?'No results':'No marks yet';document.getElementById('emP').textContent=q?`Nothing matches "${q}".`:'Hit Add Mark to save your first mark to Folia.';renderSB();return;}
   em.style.display='none';
   bd.innerHTML=l.map(m=>{
-    const cm=m.cat?catC(m.cat):null;
     const stars=[1,2,3,4,5].map(i=>`<span class="star ${i<=(m.rating||0)?'lit':''}" onclick="qRate('${m.id}',${i},event)">★</span>`).join('');
     const tags=(m.tags||[]).slice(0,2).map(t=>`<span class="tp">#${esc(t)}</span>`).join('');
     return`<div class="mark" data-id="${m.id}" onclick="openMark('${m.id}',event)">
       ${heroInner(m)}
       <div class="cb">
-        ${m.cat?`<div class="cc"><span class="cdot" style="background:${cm.c}"></span>${esc(m.cat)}</div>`:''}
         <div class="ct-title">${esc(m.title)}</div>
         ${m.note?`<div class="cn">${esc(m.note)}</div>`:''}
         <div class="cf"><div class="stars">${stars}</div>${tags}${!m.read?`<div class="unr"></div>`:''}</div>
@@ -886,58 +877,116 @@ function openModal(data){
   mHeroVal=data?.heroVal||(data?autoGrad(data.id):'g0');
   mHeroImg=data?.heroImg||'';
   syncMS();syncStatRow();updateHePreview();buildGradRow('gradRow','modal');
-  document.getElementById('imgUrlRow').style.display='none';document.getElementById('dropzone').style.display='none';
-  document.getElementById('upPrev').classList.remove('on');
+  document.getElementById('imgUrlRow').style.display='none';
+  document.getElementById('dropzone').style.display='none';
+  document.getElementById('fetchBar').classList.remove('on');
   document.getElementById('dupWarn').classList.remove('on');
-  if(data?.url)showUp(data.url);
+  setUrlMode('auto');
+  if(data?.url)showFetchPreview(data);
   document.getElementById('ov').classList.add('open');
   setTimeout(()=>document.getElementById('fUrl').focus(),80);
 }
 function closeModal(){document.getElementById('ov').classList.remove('open');editId=null}
-let _ut;
-function onUrl(){clearTimeout(_ut);_ut=setTimeout(()=>{const v=document.getElementById('fUrl').value.trim();showUp(v);checkDup(v);},500)}
-function showUp(url){
-  try{
-    const u=new URL(url),d=u.hostname.replace('www.','');
-    document.getElementById('upFav').src=`https://www.google.com/s2/favicons?domain=${u.hostname}&sz=32`;
-    document.getElementById('upDom').textContent=d;
-    const t=document.getElementById('fTitle');
-    if(!t.value)t.value=d;
-    document.getElementById('upTitle').textContent=t.value||d;
-    document.getElementById('upPrev').classList.add('on');
-    if(mHeroType==='grad'){fetchOG(url);}
-  }catch{}
+
+function showFetchPreview(data){
+  const bar=document.getElementById('fetchBar');
+  document.getElementById('fetchTitle').textContent=data.title||dom(data.url);
+  document.getElementById('fetchDomain').querySelector('span').textContent=dom(data.url);
+  document.getElementById('fetchFav').src=fav(data.url);
+  if(data.heroType==='img'&&data.heroImg){
+    document.getElementById('fetchThumb').src=data.heroImg;
+  } else {
+    document.getElementById('fetchThumb').src='';
+    document.getElementById('fetchThumb').style.background='var(--card2)';
+  }
+  document.getElementById('fetchSpinner').style.display='none';
+  document.getElementById('fetchOk').style.display='block';
+  bar.classList.add('on');
 }
-async function fetchOG(url){
+
+let _ut;
+function onUrl(){
+  clearTimeout(_ut);
+  const url=document.getElementById('fUrl').value.trim();
+  if(!url)return;
+  checkDup(url);
+  if(urlMode==='auto'){
+    _ut=setTimeout(()=>autoFetch(url),600);
+  } else {
+    // Manual mode: just fill domain as title hint
+    try{
+      const d=new URL(url).hostname.replace('www.','');
+      const t=document.getElementById('fTitle');
+      if(!t.value)t.value=d;
+    }catch{}
+  }
+}
+
+async function autoFetch(url){
+  try{new URL(url)}catch{return}
+  const bar=document.getElementById('fetchBar');
+  const spinner=document.getElementById('fetchSpinner');
+  const ok=document.getElementById('fetchOk');
+  // Show loading state
+  document.getElementById('fetchTitle').textContent='Fetching page info…';
+  document.getElementById('fetchDomain').querySelector('span').textContent=dom(url);
+  document.getElementById('fetchFav').src=fav(url);
+  document.getElementById('fetchThumb').src='';
+  spinner.style.display='block';
+  ok.style.display='none';
+  bar.classList.add('on');
+
   try{
     const proxy=`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
-    const r=await fetch(proxy);
-    if(!r.ok)return;
+    const r=await fetch(proxy,{signal:AbortSignal.timeout(8000)});
+    if(!r.ok)throw new Error('proxy fail');
     const j=await r.json();
     const html=j.contents||'';
-    const ogMatch=html.match(/<meta[^>]*property=["']og:image["'][^>]*content=["']([^"']+)["']/i)
-                 ||html.match(/<meta[^>]*content=["']([^"']+)["'][^>]*property=["']og:image["']/i)
-                 ||html.match(/<meta[^>]*name=["']twitter:image["'][^>]*content=["']([^"']+)["']/i);
-    const titleMatch=html.match(/<meta[^>]*property=["']og:title["'][^>]*content=["']([^"']+)["']/i)
-                    ||html.match(/<meta[^>]*content=["']([^"']+)["'][^>]*property=["']og:title["']/i);
-    if(titleMatch&&titleMatch[1]){
+
+    // Extract OG image
+    const ogImg=html.match(/<meta[^>]*property=["']og:image["'][^>]*content=["']([^"']+)["']/i)
+               ||html.match(/<meta[^>]*content=["']([^"']+)["'][^>]*property=["']og:image["']/i)
+               ||html.match(/<meta[^>]*name=["']twitter:image["'][^>]*content=["']([^"']+)["']/i);
+    // Extract title
+    const ogTitle=html.match(/<meta[^>]*property=["']og:title["'][^>]*content=["']([^"']+)["']/i)
+                 ||html.match(/<meta[^>]*content=["']([^"']+)["'][^>]*property=["']og:title["']/i)
+                 ||html.match(/<title[^>]*>([^<]+)<\/title>/i);
+
+    let titleVal='';
+    if(ogTitle&&ogTitle[1]){
+      titleVal=ogTitle[1].trim().replace(/&amp;/g,'&').replace(/&#39;/g,"'").replace(/&quot;/g,'"').replace(/&lt;/g,'<').replace(/&gt;/g,'>');
       const t=document.getElementById('fTitle');
-      const d=document.getElementById('upDom').textContent;
-      if(!t.value||t.value===d){
-        const clean=titleMatch[1].trim().replace(/&amp;/g,'&').replace(/&#39;/g,"'").replace(/&quot;/g,'"');
-        t.value=clean;document.getElementById('upTitle').textContent=clean;
-      }
+      if(!t.value||t.value===dom(url))t.value=titleVal;
     }
-    if(ogMatch&&ogMatch[1]){
-      let imgUrl=ogMatch[1].trim();
+
+    let imgUrl='';
+    if(ogImg&&ogImg[1]){
+      imgUrl=ogImg[1].trim();
       if(imgUrl.startsWith('//')){imgUrl='https:'+imgUrl;}
       else if(imgUrl.startsWith('/')){try{imgUrl=new URL(url).origin+imgUrl;}catch{}}
       mHeroType='img';mHeroImg=imgUrl;
       updateHePreview();buildGradRow('gradRow','modal');
     }
-  }catch{}
+
+    // Update fetch bar with results
+    document.getElementById('fetchTitle').textContent=titleVal||dom(url);
+    if(imgUrl){
+      document.getElementById('fetchThumb').src=imgUrl;
+      document.getElementById('fetchThumb').onerror=()=>{document.getElementById('fetchThumb').src='';};
+    }
+    spinner.style.display='none';
+    ok.style.display='block';
+  }catch{
+    // Graceful fail — still show bar with domain info
+    const t=document.getElementById('fTitle');
+    const d=dom(url);
+    if(!t.value)t.value=d;
+    document.getElementById('fetchTitle').textContent=t.value||d;
+    spinner.style.display='none';
+    ok.style.display='block';
+  }
 }
-function syncUT(){document.getElementById('upTitle').textContent=document.getElementById('fTitle').value}
+
 function setRat(v){mRat=mRat===v?0:v;syncMS()}
 function syncMS(){document.querySelectorAll('.ms').forEach(s=>s.classList.toggle('lit',parseInt(s.dataset.v)<=mRat))}
 
@@ -954,13 +1003,7 @@ async function saveMark(){
 }
 
 // ── Hero Quick-Edit ──
-function openHem(id,e){
-  e.stopPropagation();const m=marks.find(x=>x.id===id);if(!m)return;
-  hemId=id;hemType=m.heroType||'grad';hemVal=m.heroVal||autoGrad(id);hemImg=m.heroImg||'';
-  document.getElementById('hemImgUrl').value='';
-  updateHemPreview();buildGradRow('hemGradRow','hem');
-  document.getElementById('hemOv').classList.add('open');
-}
+function openHem(id,e){e.stopPropagation();const m=marks.find(x=>x.id===id);if(!m)return;hemId=id;hemType=m.heroType||'grad';hemVal=m.heroVal||autoGrad(id);hemImg=m.heroImg||'';document.getElementById('hemImgUrl').value='';updateHemPreview();buildGradRow('hemGradRow','hem');document.getElementById('hemOv').classList.add('open')}
 function closeHem(){document.getElementById('hemOv').classList.remove('open');hemId=null}
 async function saveHem(){if(!hemId)return;const m=marks.find(x=>x.id===hemId);if(!m)return;m.heroType=hemType;m.heroVal=hemVal;m.heroImg=hemImg;await save();render();closeHem();toast('Cover updated ✓')}
 
